@@ -59,7 +59,46 @@ public class Easy {
     breaks[0], lunch,
      breaks[1]
    });
+   
+   // TODO: iterate through map and open browser windows
+   Iterator itr8r = schedule.entrySet().iterator();
+   while(itr8r.hasNext()){
+    Map.Entry pair = (Map.Entry)itr8r.next();
+    String day = pair.getKey();
+    int[] times = pair.getValue(); // break1, lunch, break2
+    outln(pair.getKey() + " = " + pair.getValue());
+    for(int i = 0; i < times.length(); i++){
+     if(i%2!=0){
+      browserTimer("Break", times[i]);
+      browserTimer("BrEnd", times[i]+15);
+     }else{
+      browserTimer("Lunch", times[i]);
+      browserTimer("LuEnd", times[i]+60);
+     }
+    }
+    itr8r.remove();
+   }
   }
+ }
+
+ static private String[] getPaste() {
+  outln("getPaste() begin");
+  Scanner inputScanner = new Scanner(System.in);
+  outln("Variable initialized: inputScanner");
+  outln("Variable declared: inputScanner as new Scanner object");
+
+  System.out.println("How many lines?");
+  String[] s = new String[inputScanner.nextInt()];
+
+  System.out.println("Paste the CtrlA schedule");
+  for (int i = 0; i < s.length; i++) {
+   s[i] = inputScanner.nextLine();
+  }
+  inputScanner.close();
+  outln("Variable changed: inputScanner closed");
+  outln("Finished retrieving lines.");
+  outln("getPaste() end");
+  return s;
  }
 
  // time will be stored in minutes
@@ -88,35 +127,31 @@ public class Easy {
    System.out.println("DEBUG: " + s);
  }
 
- static private String[] getPaste() {
-  outln("getPaste() begin");
-  Scanner inputScanner = new Scanner(System.in);
-  outln("Variable initialized: inputScanner");
-  outln("Variable declared: inputScanner as new Scanner object");
-
-  System.out.println("How many lines?");
-  String[] s = new String[inputScanner.nextInt()];
-
-  System.out.println("Paste the CtrlA schedule");
-  for (int i = 0; i < s.length; i++) {
-   s[i] = inputScanner.nextLine();
-  }
-  inputScanner.close();
-  outln("Variable changed: inputScanner closed");
-  outln("Finished retrieving lines.");
-  outln("getPaste() end");
-  return s;
- }
-
- static public void browserTimer(String name, int time) {
+ static public void browserTimer(String name, int time/*, boolean x*/) {
+  // todo: add break ends
   String site = "https://vclock.com/#time=[a]&title=" + name + "&sound=glow&loop=1";
   String a = String.valueOf(time / 60) + ":" + String.valueOf(time % 60);
   if (a.length() < 5) a = "0" + a;
-  site = site.replace("[a]", a);
+  site = site.replace("[a]", a); // add the break time into the alarm
   Runtime.getRuntime().exec(new String[] {
    "cmd",
    "/c",
    "start chrome " + site
   });
+  
+  String a = String.valueOf(time / 60) + ":" + String.valueOf(time % 60);
+  if (a.length() < 5) a = "0" + a;
+  site = site.replace("[a]", a); // add the break name into the alarm
+  Runtime.getRuntime().exec(new String[] {
+   "cmd",
+   "/c",
+   "start chrome " + site
+  });
+  /*if(x)
+  if(name.contains("B")){ // 15 min break
+   browserTimer
+  }else{ // lunch
+   
+  }*/
  }
 }
