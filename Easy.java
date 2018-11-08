@@ -22,8 +22,8 @@ public class Easy {
  public static final boolean debug = true;
  // automatically creates alarms from pasted schedule
 
- public static void main(String[] args){
-   final boolean methodA = true;
+ public static void main(String[] args) {
+  final boolean methodA = true;
 
   // day, lunch time(s), breaks\
   HashMap < String, int[] > schedule = new HashMap < String, int[] > ();
@@ -107,11 +107,16 @@ public class Easy {
   outln("getPaste() end");
   return s;
  }
-  
-  static public void browserTimer(String name, int time){
-    String site = "https://vclock.com/#time=[a]&title=" + name + "&sound=glow&loop=1";
-    String a = String.valueOf(time/60) + ":" + String.valueOf(time%60);
-    if(a.length()<5) a = "0" + a;
-    site = site.replace("[a]",a);
-  }
+
+ static public void browserTimer(String name, int time) {
+  String site = "https://vclock.com/#time=[a]&title=" + name + "&sound=glow&loop=1";
+  String a = String.valueOf(time / 60) + ":" + String.valueOf(time % 60);
+  if (a.length() < 5) a = "0" + a;
+  site = site.replace("[a]", a);
+  Runtime.getRuntime().exec(new String[] {
+   "cmd",
+   "/c",
+   "start chrome " + site
+  });
+ }
 }
