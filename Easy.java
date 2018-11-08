@@ -59,21 +59,21 @@ public class Easy {
     breaks[0], lunch,
      breaks[1]
    });
-   
+
    // TODO: iterate through map and open browser windows
    Iterator itr8r = schedule.entrySet().iterator();
-   while(itr8r.hasNext()){
-    Map.Entry pair = (Map.Entry)itr8r.next();
+   while (itr8r.hasNext()) {
+    Map.Entry pair = (Map.Entry) itr8r.next();
     String day = pair.getKey();
     int[] times = pair.getValue(); // break1, lunch, break2
     outln(pair.getKey() + " = " + pair.getValue());
-    for(int i = 0; i < times.length(); i++){
-     if(i%2!=0){
+    for (int i = 0; i < times.length(); i++) {
+     if (i % 2 != 0) {
       browserTimer("Break", times[i]);
-      browserTimer("BrEnd", times[i]+15);
-     }else{
+      browserTimer("BrEnd", times[i] + 15);
+     } else {
       browserTimer("Lunch", times[i]);
-      browserTimer("LuEnd", times[i]+60);
+      browserTimer("LuEnd", times[i] + 60);
      }
     }
     itr8r.remove();
@@ -127,7 +127,7 @@ public class Easy {
    System.out.println("DEBUG: " + s);
  }
 
- static public void browserTimer(String name, int time/*, boolean x*/) {
+ static public void browserTimer(String name, int time /*, boolean x*/ ) {
   // todo: add break ends
   String site = "https://vclock.com/#time=[a]&title=" + name + "&sound=glow&loop=1";
   String a = String.valueOf(time / 60) + ":" + String.valueOf(time % 60);
@@ -138,7 +138,7 @@ public class Easy {
    "/c",
    "start chrome " + site
   });
-  
+
   String a = String.valueOf(time / 60) + ":" + String.valueOf(time % 60);
   if (a.length() < 5) a = "0" + a;
   site = site.replace("[a]", a); // add the break name into the alarm
