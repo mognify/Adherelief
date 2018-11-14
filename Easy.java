@@ -70,8 +70,6 @@ public class Easy {
    }
 
   static private void openBrowserWindows(Iterator itr8r) {
-   // TODO: iterate through map and open browser windows
-   Iterator itr8r = schedule.entrySet().iterator();
    
    while (itr8r.hasNext()) {
     Map.Entry pair = (Map.Entry) itr8r.next();
@@ -89,6 +87,7 @@ public class Easy {
      }
     }
    }
+    
    itr8r.remove();
   }
  }
