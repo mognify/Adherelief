@@ -19,9 +19,9 @@ import java.net.URI;
 import java.util.Map;
 import java.util.HashMap;
 import java.util.Scanner;
-import java.util.concurrent.TimeUnit;
 import java.util.Iterator;
 import java.util.ArrayList;
+import java.util.concurrent.TimeUnit;
 
 public class Easy {
  public static final boolean debug = true;
@@ -79,7 +79,7 @@ public class Easy {
   }
  }
 
- static private void openBrowserWindows(Iterator << ? > itr8r) {
+ static private void openBrowserWindows(Iterator < ? > itr8r) {
   outln("openBrowserWindows start");
   while (itr8r.hasNext()) {
    Map.Entry < String, Integer[] > pair = (Map.Entry < String, Integer[] > ) itr8r.next();
@@ -101,6 +101,11 @@ public class Easy {
      browserTimer("LuEnd", times[j] + 60);
     }
    }
+  }
+  try {
+   TimeUnit.SECONDS.sleep(3);
+  } catch (InterruptedException e) {
+   e.printStackTrace();
   }
 
   outln("openBrowserWindows end");
@@ -198,9 +203,8 @@ public class Easy {
    e.printStackTrace();
   }
   try {
-   TimeUnit.SECONDS.sleep(3);
+   TimeUnit.SECONDS.sleep(1);
   } catch (InterruptedException e) {
-   // TODO Auto-generated catch block
    e.printStackTrace();
   }
 
