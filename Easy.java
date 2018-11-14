@@ -12,13 +12,14 @@
 // http://webapps.homedepot.com/itsd/dashboard/
 // TODO: actually, i want the user to paste these into a text file and have them open from there
 
+import java.io.IOException;
 import java.awt.Desktop;
 import java.net.URI;
-import java.io.IOException;
-import java.util.Iterator;
+
 import java.util.Map;
 import java.util.HashMap;
 import java.util.Scanner;
+import java.util.Iterator;
 import java.util.ArrayList;
 
 public class Easy {
