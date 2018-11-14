@@ -89,17 +89,28 @@ public class Easy {
    outln(pair.getKey() + " = " + pair.getValue()[0]);
 
    for (int j = 0; j < times.length; j++) {
-    if (j % 2 != 0) {
-     outln("Break" + j + ": " + times[j]);
-     browserTimer("Break", times[j]);
-     outln("BrEnd" + j + ": " + times[j] + 15);
-     browserTimer("BrEnd", times[j] + 15);
+    if (j % 2 == 0) {
+     outln("Break" + ((j / 2) + 1) + ": " + times[j]);
+     browserTimer("Break" + ((j / 2) + 1), times[j]);
+     outln("BrEnd" + ((j / 2) + 1) + ": " + (times[j] + 15));
+     browserTimer("BrEnd" + ((j / 2) + 1), times[j] + 15);
     } else {
      outln("Lunch" + j + ": " + times[j]);
      browserTimer("Lunch", times[j]);
      outln("LuEnd" + j + ": " + times[j] + 60);
-     browserTimer("LuEnd", times[j] + 60);
+     browserTimer("LuEnd", (times[j] + 60));
     }
+
+    /*
+     * out of the sample, this producted
+     * 12:00 AM Break1
+     * 12:15 AM BrEnd1
+     * 12:00 AM Lunch
+     * 1:00AM LuEnd
+     * 7:45PM Break2
+     * 2:00AM BrEnd2
+     * 
+     */
    }
   }
   try {
