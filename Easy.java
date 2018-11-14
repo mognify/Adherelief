@@ -30,80 +30,100 @@ public class Easy {
   final boolean methodA = true;
 
   // day, lunch time(s), breaks\
-  HashMap < String, int[] > schedule = new HashMap < String, int[] > ();
+  HashMap < String, Integer[] > schedule = new HashMap < String, Integer[] > ();
   String[] input = getPaste();
 
   String day = "";
-  int lunch = 0,
+  int lunch = 0;
+  Integer[] breaks = new Integer[] {
+   0,
+   0
+  };
+  outln("Variables initialized: day, lunch, breaks");
 
-   for (int i = 0; i < input.length; i++) {
-    breaks[] = new int[] {
-     0,
-     0
-    };
-    int b = 0;
-    outln("Variables initialized: day, lunch, breaks");
+  for (int i = 0; i < input.length; i++) {
+   int b = 0;
+   outln("Variables initialized: b");
 
-    day = getDay(input[i]);
+   String dayTemp = getDay(input[i]);
+   if (!dayTemp.equals("[BAD]")) {
+    day = dayTemp;
+    outln("Variable changed: day to " + day);
+    continue;
+   }
 
-    if (input[i].contains("Break")) {
-     b++;
-     
-     outln("Break " + String.valueOf(b) + " identified.");
-     
-     breaks[b] = getBreak(input[i], false);
-    } else if (input[i].contains("Lunch")) {
-     outln("Lunch identified.");
-     lunch = getBreak(input[i], true);
-     
-     outln("Lunch found to be at " +
+   if (input[i].contains("Break")) {
+    b++;
+
+    outln("\tBreak " + String.valueOf(b) + " identified: " + input[i]);
+
+    breaks[b] = getBreak(input[i], false);
+   } else if (input[i].contains("Lunch")) {
+    outln("\tLunch identified: " + input[i]);
+    lunch = getBreak(input[i], true);
+
+    outln("Lunch found to be at " +
      String.valueOf(lunch / 60) + ":" + String.valueOf(lunch % 60));
-    }
-
-    schedule.put(day, new int[] {
-     breaks[0], lunch,
-      breaks[1]
-    });
-
-    openBrowserWindows(schedule.entrySet().iterator());
-
+   } else {
+    continue;
    }
 
-  static private void openBrowserWindows(Iterator itr8r) {
-   
-   while (itr8r.hasNext()) {
-    Map.Entry pair = (Map.Entry) itr8r.next();
-    String dayy = (String) pair.getKey(); // CHECK
-    int[] times = (int[]) pair.getValue(); // break1, lunch, break2
-    outln(pair.getKey() + " = " + pair.getValue());
-    
-    for (int j = 0; j < times.length; j++) {
-     if (j % 2 != 0) {
-      browserTimer("Break", times[j]);
-      browserTimer("BrEnd", times[j] + 15);
-     } else {
-      browserTimer("Lunch", times[j]);
-      browserTimer("LuEnd", times[j] + 60);
-     }
-    }
-   }
-    
-   itr8r.remove();
+   schedule.put(day, new Integer[] {
+    breaks[0], lunch,
+     breaks[1]
+   });
+
+   openBrowserWindows(schedule.entrySet().iterator());
+
   }
+ }
+
+ static private void openBrowserWindows(Iterator << ? > itr8r) {
+  outln("openBrowserWindows start");
+  while (itr8r.hasNext()) {
+   Map.Entry < String, Integer[] > pair = (Map.Entry < String, Integer[] > ) itr8r.next();
+   String dayy = pair.getKey(); // CHECK
+   if (dayy.contains("[BAD]")) return;
+   Integer[] times = pair.getValue(); // break1, lunch, break2
+   outln(pair.getKey() + " = " + pair.getValue()[0]);
+
+   for (int j = 0; j < times.length; j++) {
+    if (j % 2 != 0) {
+     outln("Break" + j + ": " + times[j]);
+     browserTimer("Break", times[j]);
+     outln("BrEnd" + j + ": " + times[j] + 15);
+     browserTimer("BrEnd", times[j] + 15);
+    } else {
+     outln("Lunch" + j + ": " + times[j]);
+     browserTimer("Lunch", times[j]);
+     outln("LuEnd" + j + ": " + times[j] + 60);
+     browserTimer("LuEnd", times[j] + 60);
+    }
+   }
+  }
+
+  outln("openBrowserWindows end");
+  itr8r.remove();
+
+  return;
  }
 
  static private String getDay(String input) {
   if (input.contains("Monday|Tuesday|Wednesday|Thursday|Friday")) {
-   day = input.trim().substring(0, 6);
-   
+   String day = input.trim().substring(0, 6);
+
    outln(day + " identified.");
+
+   return day;
   }
+
+  return "[BAD]";
  }
 
  static private String[] getPaste() {
   outln("getPaste() begin");
   Scanner inputScanner = new Scanner(System.in);
-  
+
   outln("Variable initialized: inputScanner");
   outln("Variable declared: inputScanner as new Scanner object");
 
@@ -111,17 +131,17 @@ public class Easy {
   String[] s = new String[inputScanner.nextInt()];
 
   System.out.println("Paste the CtrlA schedule");
-  
+
   for (int i = 0; i < s.length; i++) {
    s[i] = inputScanner.nextLine();
   }
-  
+
   inputScanner.close();
-  
+
   outln("Variable changed: inputScanner closed");
   outln("Finished retrieving lines.");
   outln("getPaste() end");
-  
+
   return s;
  }
 
@@ -131,16 +151,21 @@ public class Easy {
   int breakTime = 0;
   outln("Variable initialized: breakTime");
 
-  String work = lunch ? s.split("h", 2)[1] : s.split("k", 1)[1];
+  //String work = lunch ? s.split("h", 2)[1] : s.split("k", 1)[1];
+  String work = lunch ? s.substring(s.indexOf('h') + 1) : s.substring(s.indexOf('k') + 1);
+
   outln("Variable initialized: work");
   outln("Variable changed: work to " + work);
-  breakTime += (60 * Integer.valueOf(work.split(":")[0]).intValue()) +
-   Integer.valueOf(work.split(":")[1]).intValue();
+  String fix1 = work.split(":")[0];
+  fix1 = fix1.contains(" ") ? fix1.split(" ")[1] : fix1;
+  breakTime += (60 * Integer.valueOf(fix1).intValue()) +
+   Integer.valueOf(work.split(":")[1].split(" ")[0]).intValue();
   outln("Variable changed: breakTime to " +
    String.valueOf(breakTime));
   if (s.split(":", 2)[1].contains("PM")) {
    outln("PM identified, adding 12*60 minutes");
    breakTime += 12 * 60;
+   outln("Variable changed: breakTime to " + breakTime);
   }
   outln("getBreak() end");
   return breakTime;
@@ -151,15 +176,17 @@ public class Easy {
    System.out.println("DEBUG: " + s);
  }
 
- static public void browserTimer(String name, int time /*, boolean x*/ ) {
-  // todo: add break ends
-  String site = "https://vclock.com/#time=[a]&title=" + name + "&sound=glow&loop=1";
+ static public void browserTimer(String name, Integer time /*, boolean x*/ ) {
+  outln("browserTimer start");
+  String site = "\"https://vclock.com/#time=[a]&title=" + name + "&sound=glow&loop=1\"";
   String a = String.valueOf(time / 60) + ":" + String.valueOf(time % 60);
-  
+
   if (a.length() < 5) a = "0" + a;
-  
+  if (a.length() < 5) a = a + "0";
+
   site = site.replace("[a]", a); // add the break time into the alarm
-  
+  outln("browserTimer: Trying " + site);
+
   try {
    Runtime.getRuntime().exec(new String[] {
     "cmd",
@@ -169,21 +196,8 @@ public class Easy {
   } catch (IOException e) {
    e.printStackTrace();
   }
-  
-  /*
-    String a = String.valueOf(time / 60) + ":" + String.valueOf(time % 60);
-    if (a.length() < 5) a = "0" + a;
-    site = site.replace("[a]", a); // add the break name into the alarm
-    Runtime.getRuntime().exec(new String[] {
-     "cmd",
-     "/c",
-     "start chrome " + site
-    });
-    /*if(x)
-    if(name.contains("B")){ // 15 min break
-     browserTimer
-    }else{ // lunch
-     
-    }*/
+
+  outln("browserTimer end");
+  return;
  }
 }
