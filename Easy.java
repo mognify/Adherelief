@@ -10,7 +10,7 @@
 // https://thdengops.slack.com/
 // https://workforce.homedepot.com/wfo/control/showadherence
 // http://webapps.homedepot.com/itsd/dashboard/
-// TODO: actually, i want the user to paste these into a text file and have them open from there
+// TODO: SPECIAL CASE: OFF DAYS
 
 import java.io.IOException;
 import java.awt.Desktop;
@@ -19,6 +19,7 @@ import java.net.URI;
 import java.util.Map;
 import java.util.HashMap;
 import java.util.Scanner;
+import java.util.concurrent.TimeUnit;
 import java.util.Iterator;
 import java.util.ArrayList;
 
@@ -194,6 +195,12 @@ public class Easy {
     "start chrome " + site
    });
   } catch (IOException e) {
+   e.printStackTrace();
+  }
+  try {
+   TimeUnit.SECONDS.sleep(3);
+  } catch (InterruptedException e) {
+   // TODO Auto-generated catch block
    e.printStackTrace();
   }
 
