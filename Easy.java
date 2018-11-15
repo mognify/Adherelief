@@ -51,42 +51,46 @@ public class Easy {
   int year = Integer.valueOf(dateFormat.format(date).split("/")[2].split(" ")[0]).intValue();
   outln("Today is " + today);
   outln("Year is " + year);
-  boolean yearGood = false;
+  boolean yearGood = false, dayGood = false;
   
   for(int i = 0, complete = 3; i < input.length() && complete > 0; i++){
    int b = 0;
    outln("Main loop count: " + i);
    
    // check if today's date
-   if(input[i].contains("" + year) || yearGood){ // year check -> get breaks -> create timers
+   if(input[i].contains("" + year) || (dayGood && yearGood)){ // year check -> get breaks -> create timers
+    if(!yearGood){
+     dayGood
+    }
     yearGood = true; // the key to the kingdom is granted on first access
     
-    if (input[i].contains("Break")) {
+    
+    if (input[i].contains("Break")) { // get breaks
      complete--;
      b++;
 
      outln("\tBreak " + String.valueOf(b) + " identified: " + input[i]);
 
-     breaks[b] = getBreak(input[i], false);
+     breaks[b] = getBreak(input[i], false); // get break
     } else if (input[i].contains("Lunch")) {
      complete--;
      outln("\tLunch identified: " + input[i]);
      lunch = getBreak(input[i], true);
 
      outln("Lunch found to be at " +
-      String.valueOf(lunch / 60) + ":" + String.valueOf(lunch % 60));
+      String.valueOf(lunch / 60) + ":" + String.valueOf(lunch % 60)); // get lunch break
     } else {
      continue;
     }
    }
    
-   outln("Complete is 0, program finished identifying schedule");
+   outln("complete is 0, schedule identification complete");
     
    schedule.put(day, new Integer[] {
     breaks[0], lunch, breaks[1]
    });
 
-    openBrowserWindows(schedule.entrySet().iterator());
+   openBrowserWindows(schedule.entrySet().iterator()); // create timers
 
    // UNNECESSARY
    /*String dayTemp = getDay(input[i]);
@@ -95,9 +99,6 @@ public class Easy {
     outln("Variable changed: day to " + day);
     continue;
    }*/
-
-
-
   }
  }
 
