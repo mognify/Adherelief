@@ -60,20 +60,23 @@ public class Easy {
    // check if today's date
    if(input[i].contains("" + year) || (dayGood && yearGood)){ // year check -> get breaks -> create timers
     if(!yearGood){
-     dayGood
+     if(input[i+1].contains("Off") continue;
+     int t = input[i].length();
+     String d = input[i].substring(t-9).split(",")[0];
+     dayGood = (d == today);
     }
     yearGood = true; // the key to the kingdom is granted on first access
     
     
-    if (input[i].contains("Break")) { // get breaks
-     complete--;
+    if (input[i].contains("Break")) { // get all 3 breaks
+     complete--; // here to make sure only the 3 breaks are checked for
      b++;
 
      outln("\tBreak " + String.valueOf(b) + " identified: " + input[i]);
 
      breaks[b] = getBreak(input[i], false); // get break
     } else if (input[i].contains("Lunch")) {
-     complete--;
+     complete--; // again, just checking to make sure only the 3 breaks are retrieved
      outln("\tLunch identified: " + input[i]);
      lunch = getBreak(input[i], true);
 
