@@ -118,6 +118,10 @@ public class Easy {
      * 2:00AM BrEnd2
      *
      * "Extends to next day"
+     *
+     * Get today's date
+     * find matching day in schedule
+     * get break lunch break (get starting time, start there)
      */
    }
   }
