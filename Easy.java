@@ -55,7 +55,7 @@ public class Easy {
   
   for(int i = 0; i < input.length(); i++){
    int b = 0;
-   outln("Variables initialized: b");
+   outln("Main loop count: " + i);
    
    
    // check if today's date
