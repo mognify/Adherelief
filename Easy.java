@@ -53,22 +53,23 @@ public class Easy {
   outln("Year is " + year);
   boolean yearGood = false;
   
-  for(int i = 0; i < input.length(); i++){
+  for(int i = 0, complete = 3; i < input.length() && complete > 0; i++){
    int b = 0;
    outln("Main loop count: " + i);
-   
    
    // check if today's date
    if(input[i].contains("" + year) || yearGood){ // year check -> get breaks -> create timers
     yearGood = true; // the key to the kingdom is granted on first access
     
     if (input[i].contains("Break")) {
+     complete--;
      b++;
 
      outln("\tBreak " + String.valueOf(b) + " identified: " + input[i]);
 
      breaks[b] = getBreak(input[i], false);
     } else if (input[i].contains("Lunch")) {
+     complete--;
      outln("\tLunch identified: " + input[i]);
      lunch = getBreak(input[i], true);
 
@@ -77,14 +78,15 @@ public class Easy {
     } else {
      continue;
     }
+   }
+   
+   outln("Complete is 0, program finished identifying schedule");
     
-    schedule.put(day, new Integer[] {
-     breaks[0], lunch,
-      breaks[1]
-    });
+   schedule.put(day, new Integer[] {
+    breaks[0], lunch, breaks[1]
+   });
 
     openBrowserWindows(schedule.entrySet().iterator());
-   }
 
    // UNNECESSARY
    /*String dayTemp = getDay(input[i]);
