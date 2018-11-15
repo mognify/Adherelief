@@ -16,7 +16,11 @@ import java.io.IOException;
 import java.awt.Desktop;
 import java.net.URI;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+
 import java.util.Map;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Scanner;
 import java.util.Iterator;
@@ -53,16 +57,16 @@ public class Easy {
   outln("Year is " + year);
   boolean yearGood = false, dayGood = false;
   
-  for(int i = 0, complete = 3; i < input.length() && complete > 0; i++){
+  for(int i = 0, complete = 3; i < input.length && complete > 0; i++){
    int b = 0;
    outln("Main loop count: " + i);
    
    // check if today's date
    if(input[i].contains("" + year) || (dayGood && yearGood)){ // year check -> get breaks -> create timers
     if(!yearGood){
-     if(input[i+1].contains("Off") continue; // so what happens if the program is tested on an off day?
+     if(input[i+1].contains("Off")) continue; // so what happens if the program is tested on an off day?
      int t = input[i].length();
-     String d = input[i].substring(t-9).split(",")[0];
+     int d = Integer.valueOf(input[i].substring(t-9).split(",")[0]).intValue();
      dayGood = (d == today);
     }
     yearGood = true; // the key to the kingdom is granted on first access
@@ -93,7 +97,7 @@ public class Easy {
     breaks[0], lunch, breaks[1]
    });
 
-   openBrowserWindows(schedule.entrySet().iterator()); // create timers
+   openBrowserWindows((Iterator<?>)schedule.entrySet().iterator()); // create timers
 
    // UNNECESSARY
    /*String dayTemp = getDay(input[i]);
@@ -105,7 +109,7 @@ public class Easy {
   }
  }
 
- static private void openBrowserWindows(Iterator < ? > itr8r) {
+ static private void openBrowserWindows(Iterator<?> itr8r) {
   outln("openBrowserWindows start");
   while (itr8r.hasNext()) {
    Map.Entry < String, Integer[] > pair = (Map.Entry < String, Integer[] > ) itr8r.next();
