@@ -41,43 +41,60 @@ public class Easy {
    0
   };
   outln("Variables initialized: day, lunch, breaks");
+  
+  // get today's date
+  // check if today's date
+  // if not, skip
+  DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
+  Date date = new Date();
+  int today = Integer.valueOf(dateFormat.format(date).split("/")[0]).intValue();
+  int year = Integer.valueOf(dateFormat.format(date).split("/")[2].split(" ")[0]).intValue();
+  outln("Today is " + today);
+  outln("Year is " + year);
+  boolean yearGood = false;
+  
   for(int i = 0; i < input.length(); i++){
    int b = 0;
    outln("Variables initialized: b");
    
-   // get today's date
+   
    // check if today's date
-   // if not, skip
+   if(input[i].contains("" + year) || yearGood){ // year check -> get breaks -> create timers
+    yearGood = true; // the key to the kingdom is granted on first access
+    
+    if (input[i].contains("Break")) {
+     b++;
 
-   String dayTemp = getDay(input[i]);
+     outln("\tBreak " + String.valueOf(b) + " identified: " + input[i]);
+
+     breaks[b] = getBreak(input[i], false);
+    } else if (input[i].contains("Lunch")) {
+     outln("\tLunch identified: " + input[i]);
+     lunch = getBreak(input[i], true);
+
+     outln("Lunch found to be at " +
+      String.valueOf(lunch / 60) + ":" + String.valueOf(lunch % 60));
+    } else {
+     continue;
+    }
+    
+    schedule.put(day, new Integer[] {
+     breaks[0], lunch,
+      breaks[1]
+    });
+
+    openBrowserWindows(schedule.entrySet().iterator());
+   }
+
+   // UNNECESSARY
+   /*String dayTemp = getDay(input[i]);
    if (!dayTemp.equals("[BAD]")) {
     day = dayTemp;
     outln("Variable changed: day to " + day);
     continue;
-   }
+   }*/
 
-   if (input[i].contains("Break")) {
-    b++;
 
-    outln("\tBreak " + String.valueOf(b) + " identified: " + input[i]);
-
-    breaks[b] = getBreak(input[i], false);
-   } else if (input[i].contains("Lunch")) {
-    outln("\tLunch identified: " + input[i]);
-    lunch = getBreak(input[i], true);
-
-    outln("Lunch found to be at " +
-     String.valueOf(lunch / 60) + ":" + String.valueOf(lunch % 60));
-   } else {
-    continue;
-   }
-
-   schedule.put(day, new Integer[] {
-    breaks[0], lunch,
-     breaks[1]
-   });
-
-   openBrowserWindows(schedule.entrySet().iterator());
 
   }
  }
@@ -141,7 +158,8 @@ public class Easy {
   return;
  }
 
- static private String getDay(String input) {
+ // UNNECESSARY
+ /*static private String getDay(String input) {
   if (input.contains("Monday|Tuesday|Wednesday|Thursday|Friday")) {
    String day = input.trim().substring(0, 6);
 
@@ -151,7 +169,7 @@ public class Easy {
   }
 
   return "[BAD]";
- }
+ }*/
 
  static private String[] getPaste() {
   outln("getPaste() begin");
