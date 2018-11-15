@@ -1,0 +1,12 @@
+program sequence:
+
+main ->
+. creates holder for schedule
+. creates holder for the user input, size determined by user input as well
+. creates temporary holders for each part of the schedule (namely: 3 breaks, including lunch) // there is one unused variable: day
+. notes the current year and day
+. creates a holder for yearGood, meaning if the correct year is found // this is for days like new year's, if you work overnight it goes 2018->2019
+
+. the loop begins, and each time checks if the line contains the year. If not, it will check if yearGood is true (if this is the correct year)
+
+-- INCORRECT: program needs to check if the DAY is good along with the year // yes, just in case the user inputs the wrong schedule
