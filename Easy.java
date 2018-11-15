@@ -60,7 +60,7 @@ public class Easy {
    // check if today's date
    if(input[i].contains("" + year) || (dayGood && yearGood)){ // year check -> get breaks -> create timers
     if(!yearGood){
-     if(input[i+1].contains("Off") continue;
+     if(input[i+1].contains("Off") continue; // so what happens if the program is tested on an off day?
      int t = input[i].length();
      String d = input[i].substring(t-9).split(",")[0];
      dayGood = (d == today);
@@ -70,7 +70,7 @@ public class Easy {
     
     if (input[i].contains("Break")) { // get all 3 breaks
      complete--; // here to make sure only the 3 breaks are checked for
-     b++;
+     b++; // break counter, to differentiate break 1 from break 2
 
      outln("\tBreak " + String.valueOf(b) + " identified: " + input[i]);
 
