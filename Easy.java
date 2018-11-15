@@ -41,9 +41,13 @@ public class Easy {
    0
   };
   outln("Variables initialized: day, lunch, breaks");
-   
+  for(int i = 0; i < input.length(); i++){
    int b = 0;
    outln("Variables initialized: b");
+   
+   // get today's date
+   // check if today's date
+   // if not, skip
 
    String dayTemp = getDay(input[i]);
    if (!dayTemp.equals("[BAD]")) {
