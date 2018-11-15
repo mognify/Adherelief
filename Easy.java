@@ -102,7 +102,7 @@ public class Easy {
     }
 
     /*
-     * out of the sample, this producted
+     * out of the sample, this produced
      * 12:00 AM Break1
      * 12:15 AM BrEnd1
      * 12:00 AM Lunch
