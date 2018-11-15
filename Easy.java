@@ -41,8 +41,7 @@ public class Easy {
    0
   };
   outln("Variables initialized: day, lunch, breaks");
-
-  for (int i = 0; i < input.length; i++) {
+   
    int b = 0;
    outln("Variables initialized: b");
 
@@ -109,7 +108,16 @@ public class Easy {
      * 1:00AM LuEnd
      * 7:45PM Break2
      * 2:00AM BrEnd2
-     * 
+     *
+     * Should be
+     * 2:30 AM Break1
+     * 12:15 AM BrEnd1
+     * 12:00 AM Lunch
+     * 1:00AM LuEnd
+     * 7:45PM Break2
+     * 2:00AM BrEnd2
+     *
+     * "Extends to next day"
      */
    }
   }
