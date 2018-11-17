@@ -10,3 +10,6 @@ main ->
 . the loop begins, and each time checks if the line contains the year. If not, it will check if yearGood is true (if this is the correct year)
 
 -- INCORRECT: program needs to check if the DAY is good along with the year // yes, just in case the user inputs the wrong schedule
+
+corrected, solved the issue of the day not actually being checked
+
