@@ -109,6 +109,7 @@ public class Easy {
  static private void openBrowserWindows(Iterator<?> itr8r) {
   outln("openBrowserWindows start");
   while (itr8r.hasNext()) {
+   @SuppressWarnings (value="unchecked")
    Map.Entry < String, Integer[] > pair = (Map.Entry < String, Integer[] > ) itr8r.next();
    String dayy = pair.getKey(); // CHECK
    if (dayy.contains("[BAD]")) return;
