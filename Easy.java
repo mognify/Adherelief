@@ -99,6 +99,10 @@ public class Easy {
 
    openBrowserWindows((Iterator<?>)schedule.entrySet().iterator()); // create timers
 
+   outln("Main ends");
+   
+   outln("Program ends");
+   exit(0);
   }
  }
 
