@@ -15,6 +15,7 @@
 import java.io.IOException;
 import java.awt.Desktop;
 import java.net.URI;
+import java.time.*;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -32,6 +33,13 @@ public class Easy {
  // automatically creates alarms from pasted schedule
 
  public static void main(String[] args) {
+  LocalDate today = LocalDate.now();
+  today.plusDay(10);
+  today.plusDay(-10);
+  today.plusDay(1);
+  String y = "YYYY-MM-DD".split("-")[0]; 
+  String d = today.split("-")[2];
+  
   final boolean methodA = true;
 
   // day, lunch time(s), breaks\
@@ -71,17 +79,23 @@ public class Easy {
     }
     yearGood = true; // the key to the kingdom is granted on first access
     
-    
-    if (input[i].contains("Break")) { // get all 3 breaks
+    // get all 3 breaks
+    if (input[i].contains("Break")) {
+     // 15 minute break
      complete--; // here to make sure only the 3 breaks are checked for
      b++; // break counter, to differentiate break 1 from break 2
 
      outln("\tBreak " + String.valueOf(b) + " identified: " + input[i]);
 
-     breaks[b] = getBreak(input[i], false); // get break
+     breaks[b] = getBreak(input[i], false);
     } else if (input[i].contains("Lunch")) {
+     // lunch break
      complete--; // again, just checking to make sure only the 3 breaks are retrieved
      outln("\tLunch identified: " + input[i]);
+     
+     // TODO: not everyone's lunch is going to be 60 minutes
+     // so check 
+     // lunch length, if 2 lunches (if their lunch is at 23:45 and they come back at 00:15, they will have 2 lunch 
      lunch = getBreak(input[i], true);
 
      outln("Lunch found to be at " +
@@ -198,7 +212,7 @@ public class Easy {
    System.out.println("DEBUG: " + s);
  }
 
- static public void browserTimer(String name, Integer time /*, boolean x*/ ) {
+ static public void browserTimer(String name, Integer time) {
   outln("browserTimer start");
   String site = "\"https://vclock.com/#time=[a]&title=" + name + "&sound=glow&loop=1\"";
   String a = String.valueOf(time / 60) + ":" + String.valueOf(time % 60);
