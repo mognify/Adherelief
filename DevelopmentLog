@@ -13,3 +13,11 @@ main ->
 
 corrected, solved the issue of the day not actually being checked
 
+---
+
+Time stamps are in the actual commit
+Wondering what else I can do to this program
+I want to port it to mobile eventually
+* Implement LocalDate somewhere, remove some clutter
+allow the timers to be updated if break has been taken late
+  GUI -> [Late Break / Lunch] -> ("Time taken?" +timeInputBox | [Now])
