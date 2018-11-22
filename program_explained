@@ -1,0 +1,12 @@
+main -> getPaste (return str[] lines of input)
+  getPaste asks the user for the number of lines in their input, then requires that many lines of input
+main -> getBreak (return int break time minutes) - loop 3
+  getBreak extracts the break time in minutes from the line, which should contain "Break" | "Lunch"
+main -> openBrowserWindows
+  oBW takes in the iterator for the hash map which should contain the 3 breaks
+   from that iterator, oBW will extract the name of the break ("Break" | "Lunch")
+   then call browserTimer with the name and time
+   
+   openBrowserWindows -> browserTimer
+    browserTimer sends the command into command prompt "start chrome" + site,
+   where site is the url to be searched using the default web browser (opens the browser window at the given address, i.e. site)
