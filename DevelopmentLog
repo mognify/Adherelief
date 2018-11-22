@@ -21,3 +21,5 @@ I want to port it to mobile eventually
 * Implement LocalDate somewhere, remove some clutter
 allow the timers to be updated if break has been taken late
   GUI -> [Late Break / Lunch] -> ("Time taken?" +timeInputBox | [Now])
+
+The program should be finished and workng by now, just need to test it with eclipse ide and then implement future plans
