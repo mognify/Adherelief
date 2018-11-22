@@ -99,13 +99,6 @@ public class Easy {
 
    openBrowserWindows((Iterator<?>)schedule.entrySet().iterator()); // create timers
 
-   // UNNECESSARY
-   /*String dayTemp = getDay(input[i]);
-   if (!dayTemp.equals("[BAD]")) {
-    day = dayTemp;
-    outln("Variable changed: day to " + day);
-    continue;
-   }*/
   }
  }
 
@@ -130,30 +123,6 @@ public class Easy {
      outln("LuEnd" + j + ": " + times[j] + 60);
      browserTimer("LuEnd", (times[j] + 60));
     }
-
-    /*
-     * out of the sample, this produced
-     * 12:00 AM Break1
-     * 12:15 AM BrEnd1
-     * 12:00 AM Lunch
-     * 1:00AM LuEnd
-     * 7:45PM Break2
-     * 2:00AM BrEnd2
-     *
-     * Should be
-     * 2:30 AM Break1
-     * 12:15 AM BrEnd1
-     * 12:00 AM Lunch
-     * 1:00AM LuEnd
-     * 7:45PM Break2
-     * 2:00AM BrEnd2
-     *
-     * "Extends to next day"
-     *
-     * Get today's date
-     * find matching day in schedule
-     * get break lunch break (get starting time, start there)
-     */
    }
   }
   try {
@@ -167,19 +136,6 @@ public class Easy {
 
   return;
  }
-
- // UNNECESSARY
- /*static private String getDay(String input) {
-  if (input.contains("Monday|Tuesday|Wednesday|Thursday|Friday")) {
-   String day = input.trim().substring(0, 6);
-
-   outln(day + " identified.");
-
-   return day;
-  }
-
-  return "[BAD]";
- }*/
 
  static private String[] getPaste() {
   outln("getPaste() begin");
@@ -249,7 +205,7 @@ public class Easy {
   outln("browserTimer: Trying " + site);
 
   try {
-   Runtime.getRuntime().exec(new String[] {
+   Runtime.getRuntime().exec(new String[]{
     "cmd",
     "/c",
     "start chrome " + site
