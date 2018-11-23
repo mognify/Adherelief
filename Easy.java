@@ -34,8 +34,6 @@ public class Easy {
 
  public static void main(String[] args) {
   LocalDate today = LocalDate.now();
-  today.plusDay(10);
-  today.plusDay(-10);
   today.plusDay(1);
   String y = "YYYY-MM-DD".split("-")[0]; 
   String d = today.split("-")[2];
