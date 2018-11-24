@@ -1,0 +1,16 @@
+A: Check if there's a save file
+  if so, read from it
+    if empty or expired, [B] (expired = today's date not found)
+    otherwise, [C]
+  
+B: Get input of schedule, via scanner
+Save to file
+Locate today
+Gather break/lunch times, in minutes
+[C]
+
+C: Create browser timers for today's schedule
+  Break1, Lunch, Break2
+  Br1End, LuEnd, Br2End
+  - milestone: make schedule adjustable, for late case
+  
