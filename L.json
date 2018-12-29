@@ -1291,7 +1291,7 @@
                     "settings": [
                         {
                             "name": "evtShopFocusSearch",
-                            "value": "[Ctrl] [l],[Ctrl] [Return]"
+                            "value": "[Ctrl] [F]"
                         },
                         {
                             "name": "evtShopSwitchTabs",
